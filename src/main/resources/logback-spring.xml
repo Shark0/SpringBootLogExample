@@ -1,0 +1,67 @@
+<configuration>
+    <contextName>example</contextName>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="SYSTEM_ERROR" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/system_error.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %thread %-5level %logger{36}.%M - %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>WARN</level>
+        </filter>
+    </appender>
+
+    <appender name="TIME" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/time.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>TRACE</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="CUSTOM" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/custom.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <appender name="ERROR" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_PATH}/error.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd_HH:mm:ss.SSS} %msg%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <logger name="com.shark.example.util.log">
+        <appender-ref ref="CUSTOM" />
+        <appender-ref ref="TIME" />
+        <appender-ref ref="ERROR" />
+    </logger>
+
+    <root>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SYSTEM_ERROR" />
+    </root>
+
+</configuration>

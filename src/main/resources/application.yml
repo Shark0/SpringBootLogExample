@@ -1,0 +1,21 @@
+server:
+  port: 7080
+  tomcat:
+    accesslog:
+      enabled: true
+      directory: /Users/shiyongzhe/Documents/Shark/java/SpringBootLogExample/log
+      prefix: access
+      suffix: .log
+      pattern: common
+      rotate: true
+swagger:
+  basePackage: com.shark.example
+spring:
+  application:
+    name: Example
+logging:
+  level:
+    com:
+      shark:
+        example: trace
+  path: log
