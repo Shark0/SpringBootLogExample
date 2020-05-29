@@ -9,5 +9,5 @@ import static java.lang.annotation.ElementType.METHOD;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target({METHOD, LOCAL_VARIABLE})
-public @interface TimeLog {
+public @interface Log {
 }

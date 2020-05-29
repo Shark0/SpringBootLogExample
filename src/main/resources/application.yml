@@ -7,7 +7,8 @@ server:
       prefix: access
       suffix: .log
       pattern: common
-      rotate: true
+      rotate: false
+      file-date-format: .
 swagger:
   basePackage: com.shark.example
 spring:

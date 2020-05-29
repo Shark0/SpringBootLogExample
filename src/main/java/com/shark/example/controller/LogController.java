@@ -1,13 +1,12 @@
 package com.shark.example.controller;
 
-import com.shark.example.aop.log.TimeLog;
+import com.shark.example.aop.log.Log;
+import com.shark.example.controller.dio.CustomInput;
 import com.shark.example.type.LogType;
 import com.shark.example.util.log.LogUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -15,16 +14,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LogController {
 
-    @TimeLog
+    @Log
     @GetMapping("/time")
     public String time(){
         return "time";
     }
 
-    @GetMapping("/custom")
-    public String custom(){
-        LogUtil.log(LogType.CUSTOM, Long.valueOf(1), "LogController", "custom", "test custom log");
-        return "custom";
+    @Log
+    @PostMapping("/custom")
+    public String custom(@RequestBody CustomInput input){
+        LogUtil.log(LogType.CUSTOM, "LogController", "custom", "test custom log");
+        return input.getMessage();
     }
 
     @GetMapping("/error")
