@@ -1,3 +1,2 @@
-2020-04-21_11:37:41.310 1	LogController	custom	test_custom_log
-2020-05-29_16:14:17.854 LogController	custom	test custom log
-2020-05-29_16:24:59.796 LogController	custom	test custom log
+2020-05-29_17:32:08.569 com.shark.example.controller.LogController	custom	test custom log
+2020-05-29_17:32:08.570 com.shark.example.service.CustomService	start	CustomService Start

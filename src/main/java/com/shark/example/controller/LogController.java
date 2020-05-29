@@ -2,6 +2,7 @@ package com.shark.example.controller;
 
 import com.shark.example.aop.log.Log;
 import com.shark.example.controller.dio.CustomInput;
+import com.shark.example.service.CustomService;
 import com.shark.example.type.LogType;
 import com.shark.example.util.log.LogUtil;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +21,13 @@ public class LogController {
         return "time";
     }
 
+    private final CustomService customService;
+
     @Log
     @PostMapping("/custom")
     public String custom(@RequestBody CustomInput input){
-        LogUtil.log(LogType.CUSTOM, "LogController", "custom", "test custom log");
-        return input.getMessage();
+        LogUtil.log(LogType.CUSTOM, this.getClass().getName(), "custom", "test custom log");
+        return customService.start(input);
     }
 
     @GetMapping("/error")
